@@ -58,57 +58,19 @@ def main():
 			season = matches[rows]['season']
 			champion = matches[rows]['champion']
 			lane = matches[rows]['lane']
+			
+			#shove data into sqlite
 			c.execute("INSERT INTO test2 VALUES (?,?,?,?,?,?);", (summonerID, playerName, role, season, champion, lane))
 			conn.commit()
-			print role
-			print season
-			print champion
-			print lane
+			#print role
+			#print season
+			#print champion
+			#print lane
 
-	
-
-
-'''
-	for rows in range(len(data)):
-		summoners = data[0]
-		matches = data[rows][1]
-		teams = data[rows][2]
-		champs = data[rows][3]
-		pairs = data[rows][4]
-		c.execute("INSERT INTO items VALUES (?,?,?,?,?);", (summoners, matches, teams, champs, pairs))
-		conn.commit()
-		print (summoners)
-'''
-
-
-"""
-	while True:
-		# Receive raw market JSON strings.
-		json_data = zlib.decompress(subscriber.recv())
-		# Un-serialize the JSON data to a Python dict.
-		market_data = simplejson.loads(market_json)
-		# Dump the market data to stdout. Or, you know, do more fun
-		# things here.
-		jmd = simplejson.loads(market_json)
-		
-		print(jmd['resultType'])
-		
-		j = market_data['rowsets']
-		
-		for rows in range(len(j)):
-			summoners = j[rows]['rows'][0][0]
-			matches = j[rows]['rows'][0][1]
-			teams = j[rows]['rows'][0][3]
-			champs = j[rows]['rows'][0][8]
-			pairs = j[rows]['rows'][0][9]
-			c.execute("INSERT INTO items VALUES (?,?,?,?,?);", (summoners, matches, teams, champs, pairs))
-			conn.commit()
-	
-	
+	#close connection to sqlite
 	f.close();
 	conn.close();
-	
-	"""	
+
 
 if __name__ == '__main__':
 	main()
