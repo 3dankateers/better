@@ -21,6 +21,18 @@ API_KEY = "RGAPI-ee771521-37c9-4c27-b826-2e6ae442a45c"
 CHALLENGER_LEAGUE = "https://na1.api.riotgames.com/lol/league/v3/challengerleagues/by-queue/RANKED_SOLO_5x5?api_key=" + API_KEY
 
 def main():
+
+	ma = grab_challenger_matches()
+	print ma
+	insert_matches_to_db(ma)
+	
+
+
+	#close connection to sqlite
+	conn.close();
+
+
+def grab_challenger_matches():
 	#Get summoner IDs from challenger league
 	url = CHALLENGER_LEAGUE
 
@@ -28,6 +40,8 @@ def main():
 	dontgetbanned(response)
 	data = json.loads(response.read())
 	entries = data["entries"]
+
+	matches = []
 	for rows in range (len(entries)):
 		try:
 			summonerID = entries[rows]['playerOrTeamId']
@@ -51,33 +65,28 @@ def main():
 		response = urllib.urlopen(url)
 		dontgetbanned(response)
 		data = json.loads(response.read())
-		matches = data["matches"]
+		matches= matches + data["matches"]
+	return matches
 
+def insert_matches_to_db(matches):
+	for rows in range (len(matches)):
+		try:
+			role = matches[rows]['role']
+			season = matches[rows]['season']
+			champion = matches[rows]['champion']
+			lane = matches[rows]['lane']
 
+			#shove data into sqlite
+			c.execute("INSERT INTO test3 VALUES (?,?,?,?,?);", ("1234", role, season, champion, lane))
+			conn.commit()
+		except KeyError, e:
+			##print matches
+			print "Keyerror " + str(e)
+			role = "-1"
+			season = "-1"
+			champion = "-1"
+			lane = "-1"
 
-		for rows in range (len(matches)):
-			try:
-				role = matches[rows]['role']
-				season = matches[rows]['season']
-				champion = matches[rows]['champion']
-				lane = matches[rows]['lane']
-
-				#shove data into sqlite
-				c.execute("INSERT INTO test3 VALUES (?,?,?,?,?);", (summonerID, role, season, champion, lane))
-				conn.commit()
-			except KeyError, e:
-				print matches
-				print "Keyerror " + str(e)
-				role = "-1"
-				season = "-1"
-				champion = "-1"
-				lane = "-1"
-
-
-
-	#close connection to sqlite
-	f.close();
-	conn.close();
 
 #Returns account ID from a known summoner ID
 def summonerID_TOaccountID(summonerID):
