@@ -29,7 +29,12 @@ def main():
 	data = json.loads(response.read())
 	entries = data["entries"]
 	for rows in range (len(entries)):
-		summonerID = entries[rows]['playerOrTeamId']
+		try:
+			summonerID = entries[rows]['playerOrTeamId']
+		except Keyerror, e:
+			print entries
+			summonerID = "-1"
+			print "Keyerror " + str(e)
 		#Replace name with a questionmark if it cant be encoded, koreans playing this game reeeeee
 		#This is actually useless, not gunna put it into db because I dont think its worth fixing all the potential errors with people using random characters
 		#and sqlite doenst like all types of encoding
@@ -51,14 +56,22 @@ def main():
 
 
 		for rows in range (len(matches)):
-			role = matches[rows]['role']
-			season = matches[rows]['season']
-			champion = matches[rows]['champion']
-			lane = matches[rows]['lane']
+			try:
+				role = matches[rows]['role']
+				season = matches[rows]['season']
+				champion = matches[rows]['champion']
+				lane = matches[rows]['lane']
 
-			#shove data into sqlite
-			c.execute("INSERT INTO test3 VALUES (?,?,?,?,?);", (summonerID, role, season, champion, lane))
-			conn.commit()
+				#shove data into sqlite
+				c.execute("INSERT INTO test3 VALUES (?,?,?,?,?);", (summonerID, role, season, champion, lane))
+				conn.commit()
+			except KeyError, e:
+				print matches
+				print "Keyerror " + str(e)
+				role = "-1"
+				season = "-1"
+				champion = "-1"
+				lane = "-1"
 
 
 
@@ -68,14 +81,19 @@ def main():
 
 #Returns account ID from a known summoner ID
 def summonerID_TOaccountID(summonerID):
-	SUMMONER_V3 = "https://na1.api.riotgames.com/lol/summoner/v3/summoners/" + summonerID + "?api_key=" + API_KEY
-	url = SUMMONER_V3
-	response = urllib.urlopen(url)
-	dontgetbanned(response)
-	data = json.loads(response.read())
-	summonerdata = data
-	playerID = summonerdata["accountId"]
-	return playerID
+	try:
+		SUMMONER_V3 = "https://na1.api.riotgames.com/lol/summoner/v3/summoners/" + summonerID + "?api_key=" + API_KEY
+		url = SUMMONER_V3
+		response = urllib.urlopen(url)
+		dontgetbanned(response)
+		data = json.loads(response.read())
+		summonerdata = data
+		playerID = summonerdata["accountId"]
+		return playerID
+	except KeyError, e:
+		print summonerdata
+		print "Keyerror " + str(e)
+		return -1
 
 #Rate limiter, stops the program if a rate goes above the league rate
 #Should make it pause instead of stop, too lazy atm
