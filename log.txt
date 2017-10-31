@@ -392,3 +392,197 @@ Row 196 inserted into Challenger.sqlite
 Row 197 inserted into Challenger.sqlite
 Row 198 inserted into Challenger.sqlite
 Row 199 inserted into Challenger.sqlite
+Inserting Values into GameIDs.sqlite 263259467192007.21.206.686620060
+
+Inserting Values into GameIDs.sqlite 263258258192007.21.206.6866200163
+
+Inserting Values into GameIDs.sqlite 263257754392007.21.206.6866200150
+
+Inserting Values into GameIDs.sqlite 263255528692007.21.206.6866200201
+
+Inserting Values into GameIDs.sqlite 263255013691007.21.206.686620043
+
+Inserting Values into GameIDs.sqlite 263253239491007.21.206.686610039
+
+Inserting Values into GameIDs.sqlite 263251402891007.21.206.68662007
+
+Inserting Values into GameIDs.sqlite 263248705292007.21.206.686620064
+
+Inserting Values into GameIDs.sqlite 263158977891007.21.206.68661001
+
+Inserting Values into GameIDs.sqlite 263157534791007.21.206.686620061
+
+Inserting Values into GameIDs.sqlite 263153841891007.21.206.6866200117
+
+Inserting Values into GameIDs.sqlite 263149937791007.21.206.6866100141
+
+Inserting Values into GameIDs.sqlite 263094085492007.21.206.686620012
+
+Inserting Values into GameIDs.sqlite 263090904291007.21.206.686610018
+
+Inserting Values into GameIDs.sqlite 263090611792007.21.206.686620051
+
+Inserting Values into GameIDs.sqlite 263089091991007.21.206.686620079
+
+Inserting Values into GameIDs.sqlite 262930887392007.21.206.686610090
+
+Inserting Values into GameIDs.sqlite 262929307791007.21.206.6866200110
+
+Inserting Values into GameIDs.sqlite 262857537092007.20.204.980910016
+
+Inserting Values into GameIDs.sqlite 262856198592007.20.204.980910060
+
+Inserting Values into GameIDs.sqlite 262854516191007.20.204.9809200421
+
+Inserting Values into GameIDs.sqlite 262853261392007.20.204.9809200157
+
+Inserting Values into GameIDs.sqlite 262851592692007.20.204.980910060
+
+Inserting Values into GameIDs.sqlite 262852116492007.20.204.980920038
+
+Inserting Values into GameIDs.sqlite 262848522291007.20.204.980910053
+
+Inserting Values into GameIDs.sqlite 262837946692007.20.204.9809200141
+
+Inserting Values into GameIDs.sqlite 262835132291007.20.204.980910056
+
+Inserting Values into GameIDs.sqlite 262830969592007.20.204.9809200421
+
+Inserting Values into GameIDs.sqlite 262776843191007.20.204.980920040
+
+Inserting Values into GameIDs.sqlite 262777658391007.20.204.980910060
+
+Inserting Values into GameIDs.sqlite 262775478091007.20.204.980920043
+
+Inserting Values into GameIDs.sqlite 262766387692007.20.204.980920057
+
+Inserting Values into GameIDs.sqlite 262761788791007.20.204.9809200113
+
+Inserting Values into GameIDs.sqlite 262758686691007.20.204.980910038
+
+Inserting Values into GameIDs.sqlite 262757885891007.20.204.9809100421
+
+Inserting Values into GameIDs.sqlite 262719167592007.20.204.980920096
+
+Inserting Values into GameIDs.sqlite 262716968092007.20.204.9809200267
+
+Inserting Values into GameIDs.sqlite 262716592891007.20.204.9809100498
+
+Inserting Values into GameIDs.sqlite 262715913492007.20.204.9809100134
+
+Inserting Values into GameIDs.sqlite 262715297992007.20.204.980910043
+
+Inserting Values into GameIDs.sqlite 262710476492007.20.204.980910043
+
+Inserting Values into GameIDs.sqlite 262708773891007.20.204.980920053
+
+Inserting Values into GameIDs.sqlite 262706144791007.20.204.980910037
+
+Inserting Values into GameIDs.sqlite 262705325991007.20.204.980910076
+
+Inserting Values into GameIDs.sqlite 262689423392007.20.204.9809100110
+
+Inserting Values into GameIDs.sqlite 262457406091007.20.204.980910043
+
+Inserting Values into GameIDs.sqlite 262456337092007.20.204.9809200110
+
+Inserting Values into GameIDs.sqlite 262456185491007.20.204.9809200516
+
+Inserting Values into GameIDs.sqlite 262454949491007.20.204.9809200516
+
+Inserting Values into GameIDs.sqlite 262454789392007.20.204.980910025
+
+Inserting Values into GameIDs.sqlite 262454508592007.20.204.9809100114
+
+Inserting Values into GameIDs.sqlite 262454202092007.20.204.980920079
+
+Inserting Values into GameIDs.sqlite 262452648491007.20.204.980910013
+
+Inserting Values into GameIDs.sqlite 262450212591007.20.204.980920040
+
+Inserting Values into GameIDs.sqlite 262449526391007.20.204.980920018
+
+Inserting Values into GameIDs.sqlite 262445916792007.20.204.9809200131
+
+Inserting Values into GameIDs.sqlite 262446166692007.20.204.9809200240
+
+Inserting Values into GameIDs.sqlite 262442468791007.20.204.9809200131
+
+Inserting Values into GameIDs.sqlite 262440454991007.20.204.98091003
+
+Inserting Values into GameIDs.sqlite 262423942091007.20.204.980920018
+
+Inserting Values into GameIDs.sqlite 262398057792007.20.204.980920012
+
+Inserting Values into GameIDs.sqlite 262396506692007.20.204.980910080
+
+Inserting Values into GameIDs.sqlite 262394877492007.20.204.9809200157
+
+Inserting Values into GameIDs.sqlite 262392285892007.20.204.980920040
+
+Inserting Values into GameIDs.sqlite 262390736692007.20.204.980920081
+
+Inserting Values into GameIDs.sqlite 262387150491007.20.204.980910029
+
+Inserting Values into GameIDs.sqlite 262384278192007.20.204.980920051
+
+Inserting Values into GameIDs.sqlite 262382245291007.20.204.980910090
+
+Inserting Values into GameIDs.sqlite 262316907191007.20.204.9809100497
+
+Inserting Values into GameIDs.sqlite 262317594492007.20.204.980910033
+
+Inserting Values into GameIDs.sqlite 262316240691007.20.204.9809200163
+
+Inserting Values into GameIDs.sqlite 262311784391007.20.204.980920018
+
+Inserting Values into GameIDs.sqlite 262310344092007.20.204.9809100131
+
+Inserting Values into GameIDs.sqlite 262242791991007.20.204.980910061
+
+Inserting Values into GameIDs.sqlite 262243990891007.20.204.9809200497
+
+Inserting Values into GameIDs.sqlite 262240205991007.20.204.980920030
+
+Inserting Values into GameIDs.sqlite 262237318591007.20.204.980910018
+
+Inserting Values into GameIDs.sqlite 262233279592007.20.204.980920017
+
+Inserting Values into GameIDs.sqlite 262232496392007.20.204.980920017
+
+Inserting Values into GameIDs.sqlite 262203036091007.20.204.980920080
+
+Inserting Values into GameIDs.sqlite 262200585291007.20.204.9809100154
+
+Inserting Values into GameIDs.sqlite 262202017992007.20.204.980920013
+
+Inserting Values into GameIDs.sqlite 262198165992007.20.204.9809100134
+
+Inserting Values into GameIDs.sqlite 262072706991007.20.204.980910090
+
+Inserting Values into GameIDs.sqlite 262069942592007.20.204.980910059
+
+Inserting Values into GameIDs.sqlite 262066774991007.20.204.980910045
+
+Inserting Values into GameIDs.sqlite 261998383792007.20.204.9809100498
+
+Inserting Values into GameIDs.sqlite 261994672892007.20.204.9809100157
+
+Inserting Values into GameIDs.sqlite 261939815892007.20.204.9809200117
+
+Inserting Values into GameIDs.sqlite 261939500992007.20.204.9809200429
+
+Inserting Values into GameIDs.sqlite 261937223992007.20.204.980910064
+
+Inserting Values into GameIDs.sqlite 261934899591007.20.204.980920058
+
+Inserting Values into GameIDs.sqlite 261934254991007.20.204.9809200126
+
+Inserting Values into GameIDs.sqlite 261852580592007.20.204.980910059
+
+Inserting Values into GameIDs.sqlite 261849787092007.20.204.9809200113
+
+Inserting Values into GameIDs.sqlite 261850081491007.20.204.98092007
+
+Inserting Values into GameIDs.sqlite 261846151191007.20.204.980920076
+
