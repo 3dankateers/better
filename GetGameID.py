@@ -13,7 +13,7 @@ import time
 
 conn2 = sqlite3.connect('data/GameIDs.sqlite')
 c = conn2.cursor()
-c.execute("CREATE TABLE IF NOT EXISTS Games (gameID, season, champ1, champ2, champ3, champ4, champ5, champ6, champ7, champ8, champ9, champ10, winner, gameVersion, firstBlood);")
+c.execute("CREATE TABLE IF NOT EXISTS Games (gameID UNIQUE, season, champ1, champ2, champ3, champ4, champ5, champ6, champ7, champ8, champ9, champ10, winner, gameVersion, firstBlood);")
 conn2.commit()
 
 #Gunna need to update this everyday, fun
@@ -28,7 +28,6 @@ API_KEY = "RGAPI-ee771521-37c9-4c27-b826-2e6ae442a45c"
 def main():
 	#name of sqlite db
     database = 'data/Challengers.sqlite'
-    requests = 0
     # create a database connection
     conn = create_connection(database)
     with conn:
@@ -42,8 +41,6 @@ def main():
 		url = ACCOUNT_MATCH_LIST
 		response = urllib.urlopen(url)
 
-		requests+=1
-
 		data = json.loads(response.read())
 
 
@@ -52,57 +49,43 @@ def main():
 		ChampID = [0,0,0,0,0,0,0,0,0,0]
 
 		for rows in range (len(matches)):
-			gameID = matches[rows]['gameId']
-			#logging("Row " + str(rows) + " inserted into Challenger.sqlite")
+			try:
+				gameID = matches[rows]['gameId']
+				GET_GAME_STATS_FROM_ID = "https://na1.api.riotgames.com/lol/match/v3/matches/"+str(gameID)+"?api_key="+API_KEY
+				url = GET_GAME_STATS_FROM_ID
+				response = urllib.urlopen(url)
+				dontgetbanned(response)
+				data = json.loads(response.read())
+				season = data["seasonId"]
+				gameVersion = data["gameVersion"]
 
-			GET_GAME_STATS_FROM_ID = "https://na1.api.riotgames.com/lol/match/v3/matches/"+str(gameID)+"?api_key="+API_KEY
-
-			url = GET_GAME_STATS_FROM_ID
-			response = urllib.urlopen(url)
-			dontgetbanned(response)
-			data = json.loads(response.read())
-
-			requests += 1
-
-			season = data["seasonId"]
-			gameVersion = data["gameVersion"]
-
-			for player in range(10):
-				ChampID[player] = data["participants"][player]['championId']
+				for player in range(len(data["participants"])):
+					ChampID[player] = data["participants"][player]['championId']
 
 
-			'''
-			Champ 1 = Top
-			Champ 2 = Jung
-			Champ 3 = Mid
-			Champ 4 = ADC
-			Champ 5 = Support
-			Winner 100 = team 1-5
-			200 = team 6-10
-			'''
-			if(data["teams"][0]["win"]=="Win"):
-				winner = 100
-			else:
-				winner = 200
-			if(data["teams"][0]["firstBlood"]):
-				firstBlood = 100
-			else:
-				firstBlood = 200
-			
-			'''
-			print gameID
-			print season
-			print winner
-			print gameVersion
-			print firstBlood
-			for i in range (10):
-				print ChampID[i]
-			'''
+				'''
+				Champ 1 = Top
+				Champ 2 = Jung
+				Champ 3 = Mid
+				Champ 4 = ADC
+				Champ 5 = Support
+				Winner 100 = team 1-5
+				200 = team 6-10
+				'''
+				if(data["teams"][0]["win"]=="Win"):
+					winner = 100
+				else:
+					winner = 200
+				if(data["teams"][0]["firstBlood"]):
+					firstBlood = 100
+				else:
+					firstBlood = 200
 
-			c.execute("INSERT INTO Games VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);", (gameID, season, ChampID[0], ChampID[1], ChampID[2], ChampID[3], ChampID[4], ChampID[5], ChampID[6], ChampID[7], ChampID[8], ChampID[9], winner, gameVersion, firstBlood))
-			conn2.commit()
-			print requests
-			time.sleep(1.5)
+				c.execute("INSERT OR IGNORE INTO Games VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);", (gameID, season, ChampID[0], ChampID[1], ChampID[2], ChampID[3], ChampID[4], ChampID[5], ChampID[6], ChampID[7], ChampID[8], ChampID[9], winner, gameVersion, firstBlood))
+				conn2.commit()
+				time.sleep(1)
+			except KeyError:
+				print data
 
 
 
@@ -136,18 +119,18 @@ def dontgetbanned(response):
 	curAppLimit = response.info().getheader('X-App-Rate-Limit')
 	x = curAppCount.split(',')
 	RequestsPerSecond = x[1].split(':')
+	RequestsPerMinute = x[0].split(':')
 	x = curAppLimit.split(',')
 	MaxRequestsPerSecond = x[1].split(':')
+	MaxRequestsPerMinute = x[0].split(':')
 
-	print RequestsPerSecond
-	print MaxRequestsPerSecond
-
-	if(int(RequestsPerSecond[0])>(int(MaxRequestsPerSecond[0])/2)):
-		logging("Requests are at " + int(RequestsPerSecond[0]) + "\n")
-	#print "Cur Requests: " + str(RequestsPerSecond) + " Max Requests: " + str(MaxRequestsPerSecond)
+	if(int(RequestsPerMinute[0])>(int(MaxRequestsPerMinute[0])-2)):
+		print "Rate too high"
+		time.sleep(30)
 
 	if(int(RequestsPerSecond[0])>(int(MaxRequestsPerSecond[0])-2)):
-		sys.exit("Rate too high")
+		print "Rate too high"
+		time.sleep(5)
 
 if __name__ == '__main__':
 	main()

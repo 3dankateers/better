@@ -67,15 +67,18 @@ def dontgetbanned(response):
 	curAppLimit = response.info().getheader('X-App-Rate-Limit')
 	x = curAppCount.split(',')
 	RequestsPerSecond = x[1].split(':')
+	RequestsPerMinute = x[0].split(':')
 	x = curAppLimit.split(',')
 	MaxRequestsPerSecond = x[1].split(':')
+	MaxRequestsPerMinute = x[0].split(':')
 
-	if(int(RequestsPerSecond[0])>(int(MaxRequestsPerSecond[0])/2)):
-		logging("Requests are at " + int(RequestsPerSecond[0]) + "\n")
-	#print "Cur Requests: " + str(RequestsPerSecond) + " Max Requests: " + str(MaxRequestsPerSecond)
+	if(int(RequestsPerMinute[0])>(int(MaxRequestsPerMinute[0])-2)):
+		print "Rate too high"
+		time.sleep(30)
 
 	if(int(RequestsPerSecond[0])>(int(MaxRequestsPerSecond[0])-2)):
-		sys.exit("Rate too high")
+		print "Rate too high"
+		time.sleep(5)
 
 def dump_to_file(dump):
 	with open("Dump.txt", 'w') as outfile:
