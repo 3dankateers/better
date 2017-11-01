@@ -14,14 +14,7 @@ import simplejson
 #bypass cloudflare with requests, its better than urllib
 import requests
 
-conn = sqlite3.connect('data/TournamentData.sqlite')
-c = conn.cursor()
 
-####37 values, 1 of them is date
-c.execute("CREATE TABLE IF NOT EXISTS TournamentDataRaw (gameId, platformId, gameDuration, seasonId, gameVersion, champ1, champ2, champ3, champ4, champ5, champ6, champ7, champ8, \
-	champ9, champ10, player1, player2, player3, player4, player5, player6, player7, player8, player9, player10, ban1, ban2, ban3, ban4, ban5, ban6, ban7, ban8, ban9, ban10, winningTeam, datePulled);")
-
-conn.commit()
 
 
 LEAGUE_API_HTTPS = "https://acs.leagueoflegends.com/v1/stats/game/"
@@ -41,6 +34,15 @@ def main():
 	#insertTournamentMatch(url)
 
 def insertTournamentMatch(url):
+	conn = sqlite3.connect('data/TournamentData.sqlite')
+	c = conn.cursor()
+
+	####37 values, 1 of them is date
+	c.execute("CREATE TABLE IF NOT EXISTS TournamentDataRaw (gameId, platformId, gameDuration, seasonId, gameVersion, champ1, champ2, champ3, champ4, champ5, champ6, champ7, champ8, \
+		champ9, champ10, player1, player2, player3, player4, player5, player6, player7, player8, player9, player10, ban1, ban2, ban3, ban4, ban5, ban6, ban7, ban8, ban9, ban10, winningTeam, datePulled);")
+
+	conn.commit()
+
 	#initialize some lists
 	gameId = []
 	platformId = []
@@ -96,6 +98,13 @@ def getTournamentCodesFromLeagueID(LeagueID):
 	return tournamentCodes
 
 def getScheduleItemsFromLeagueID(LeagueID):
+
+	conn = sqlite3.connect('data/Test.sqlite')
+	c = conn.cursor()
+	c.execute("CREATE TABLE IF NOT EXISTS hehexd2 (matchId, tournamentId, bracketId, uniqueId);")
+	conn.commit()
+
+
 	url = "http://api.lolesports.com/api/v1/scheduleItems?leagueId=" + str(LeagueID)
 
 	response = requests.get(url)
@@ -103,12 +112,36 @@ def getScheduleItemsFromLeagueID(LeagueID):
 
 	cancerIterator = 0
 
+	for i in range(len(data['highlanderTournaments'])):
+		cancerIterator += len(data['highlanderTournaments'][i]['platformIds'])
+
+	print cancerIterator
+
 	matchId = []
 	tournamentId = []
 	platformId = []
 	gameId = []
 	tournamentName = []
+	tournamentId2 = []
+	bracketId = []
 
+	uniqueId = []
+
+	for i in range(len(data['scheduleItems'])):
+		if "match" in data['scheduleItems'][i]:
+			matchId.append(data['scheduleItems'][i]['match'])
+			tournamentId.append(data['scheduleItems'][i]['tournament'])
+			bracketId.append(data['scheduleItems'][i]['bracket'])
+			uniqueId.append(i)
+
+	schedule = zip(platformId, gameId, tournamentId, tournamentName, matchId, tournamentId2, bracketId)
+	test = zip(matchId, tournamentId, bracketId, uniqueId)
+	c.executemany("INSERT INTO hehexd2 VALUES (?,?,?,?);",(test))
+	conn.commit()
+
+	return schedule
+
+'''
 	for i in range(len(data['highlanderTournaments'])):
 		for x in range(len(data['highlanderTournaments'][i]['platformIds'])):
 			try:
@@ -119,17 +152,20 @@ def getScheduleItemsFromLeagueID(LeagueID):
 				tournamentId.append(data['highlanderTournaments'][i]['id'])
 				tournamentName.append(data['highlanderTournaments'][i]['title'])
 				matchId.append(data['scheduleItems'][cancerIterator]['match'])
+				tournamentId2.append(data['scheduleItems'][cancerIterator]['tournament'])
+				bracketId.append(data['scheduleItems'][cancerIterator]['bracket'])
 			except KeyError as e:
+				print gameId[x]
 				print "Invalid Key on position " + str(cancerIterator) + " called " + str(e)
+				matchId.append(-1)
+				tournamentId2.append(-1)
+				bracketId.append(-1)
 			except:
 				print "Catchall"
 
-			cancerIterator+=1
+			cancerIterator-=1
+'''
 
-
-	schedule = zip(platformId, gameId, tournamentId, tournamentName, matchId)
-
-	return schedule
 
 def ScheduleToGameID(schedule):
 	matchId, tournamentId = schedule
