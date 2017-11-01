@@ -58,8 +58,7 @@ def summonerID_TOaccountID(summonerID):
 		print "Keyerror " + str(e)
 		return -1
 
-#Rate limiter, stops the program if a rate goes above the league rate
-#Should make it pause instead of stop, too lazy atm
+#Rate limiter, pauses the program if a rate goes above the league rate
 def dontgetbanned(response):
 	#Gets data from league API headers, contains limit and how much youve used
 	curAppCount = response.info().getheader('X-App-Rate-Limit-Count')
