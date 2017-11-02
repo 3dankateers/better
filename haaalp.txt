@@ -1,0 +1,16 @@
+Known League ID = ?????
+http://api.lolesports.com/api/v1/scheduleItems?leagueId=9
+	From LeagueID you can get platformID ("TRLH3:1001380841")
+as well as match and tournament strings ie. from scheduleItems
+	match	"245fc1f2-dab9-40fd-afa2-f24b6173e26a"
+	tournament	"91be3d78-874a-44e0-943f-073d4c9d7bf6"
+	
+Gamehash comes from
+http://api.lolesports.com/api/v2/highlanderMatchDetails?tournamentId=91be3d78-874a-44e0-943f-073d4c9d7bf6&matchId=245fc1f2-dab9-40fd-afa2-f24b6173e26a
+Which is generated from tournament and Match strings above
+
+Then you insert platformID after splitting it into TRLH3 and 1001380841
+as well as the gameHash from highlanderMatchDetails
+https://acs.leagueoflegends.com/v1/stats/game/TRLH3/1001380841?gameHash=68c91e4081c59eaa
+
+Now you would expect this would work, but it dont

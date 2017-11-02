@@ -141,31 +141,6 @@ def getScheduleItemsFromLeagueID(LeagueID):
 
 	return schedule
 
-'''
-	for i in range(len(data['highlanderTournaments'])):
-		for x in range(len(data['highlanderTournaments'][i]['platformIds'])):
-			try:
-				PlatformAndGame = data['highlanderTournaments'][i]['platformIds'][x]
-				temp = PlatformAndGame.split(':')
-				platformId.append(temp[0])
-				gameId.append(temp[1])
-				tournamentId.append(data['highlanderTournaments'][i]['id'])
-				tournamentName.append(data['highlanderTournaments'][i]['title'])
-				matchId.append(data['scheduleItems'][cancerIterator]['match'])
-				tournamentId2.append(data['scheduleItems'][cancerIterator]['tournament'])
-				bracketId.append(data['scheduleItems'][cancerIterator]['bracket'])
-			except KeyError as e:
-				print gameId[x]
-				print "Invalid Key on position " + str(cancerIterator) + " called " + str(e)
-				matchId.append(-1)
-				tournamentId2.append(-1)
-				bracketId.append(-1)
-			except:
-				print "Catchall"
-
-			cancerIterator-=1
-'''
-
 
 def ScheduleToGameID(schedule):
 	matchId, tournamentId = schedule
