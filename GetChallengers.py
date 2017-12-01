@@ -16,9 +16,6 @@ c = conn.cursor()
 c.execute("CREATE TABLE IF NOT EXISTS ChallengerLeague (summonerID, accountID);")
 conn.commit()
 
-#Gunna need to update this everyday, fun
-API_KEY = "RGAPI-ee771521-37c9-4c27-b826-2e6ae442a45c"
-
 CHALLENGER_LEAGUE = "https://na1.api.riotgames.com/lol/league/v3/challengerleagues/by-queue/RANKED_SOLO_5x5?api_key=" + API_KEY
 
 def main():
