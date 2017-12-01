@@ -16,9 +16,6 @@ c = conn2.cursor()
 c.execute("CREATE TABLE IF NOT EXISTS Games (gameID UNIQUE, season, champ1, champ2, champ3, champ4, champ5, champ6, champ7, champ8, champ9, champ10, winner, gameVersion, firstBlood);")
 conn2.commit()
 
-#Gunna need to update this everyday, fun
-API_KEY = "RGAPI-ee771521-37c9-4c27-b826-2e6ae442a45c"
-
 #ACCOUNT_MATCH_LIST = "https://na1.api.riotgames.com/lol/match/v3/matchlists/by-account/"+str(playerID)+"?api_key="+API_KEY
 
 #GET_GAME_STATS_FROM_ID = "https://na1.api.riotgames.com/lol/match/v3/matches/"+gameID+"?api_key="+API_KEY
