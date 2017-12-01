@@ -16,9 +16,6 @@ c = conn.cursor()
 c.execute("CREATE TABLE IF NOT EXISTS SummonersList (summonerID, accountID, tier, region, rank, leaguePoints, queueType, dateScraped);")
 conn.commit()
 
-#Gunna need to update this everyday, fun
-API_KEY = "RGAPI-e52906c9-7b3b-4128-873b-056798b39877"
-
 CHALLENGER_LEAGUE = "https://na1.api.riotgames.com/lol/league/v3/challengerleagues/by-queue/RANKED_SOLO_5x5?api_key=" + API_KEY
 MASTERS_LEAGUE = "https://na1.api.riotgames.com/lol/league/v3/masterleagues/by-queue/RANKED_SOLO_5x5?api_key=" + API_KEY
 
